@@ -10,7 +10,7 @@ const makeFile = (filepath, content) => {
   const fileName = path.parse(filepath).base;
   const dirPath = path.parse(filepath).dir;
   const isDirExist = fs.existsSync(dirPath);
-  if (!isDirExist) {
+  if (!isDirExist && dirPath) {
     console.log("디렉터리가 존재하지 않습니다. 디렉터리를 생성합니다.");
     fs.mkdirSync(dirPath, { recursive: true });
   }
@@ -20,3 +20,5 @@ const makeFile = (filepath, content) => {
 };
 
 makeFile(newFilePath, "새로운 파일이 생성되었습니다.");
+
+module.exports.makeFile = makeFile;
